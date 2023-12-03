@@ -1,3 +1,9 @@
+/* In this example, we simulate an image represented as a matrix of pixels. 
+The image processing functions (applyBlur and applySharpen) are designed to work on specific segments of the image concurrently. 
+We utilize multiple threads to apply these filters simultaneously, dividing the image into segments for parallel processing.
+
+A mutex (myMutex) is employed to ensure thread safety when accessing shared resources, in this case, portions of the image matrix.
+*/
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -66,7 +72,7 @@ int main() {
         std::cout <<i<<". "<< image[i] << std::endl;
     }
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << std::endl<<"Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    std::cout << std::endl<<"Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[Âµs]" << std::endl;
 
     return 0;
 }
